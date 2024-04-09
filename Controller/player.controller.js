@@ -98,7 +98,54 @@ class user {
         }
         return res.send("Akun kamu blum ada")
 
-    }                   
+    } 
+    static getAll(req,res,next){
+        const data = req.body
+        const data1 = this.bacadata('Pekerjaan')
+        const data2 = this.bacadata('User')
+        const data3 = this.bacadata('Penghasilan')
+        const alldata = []
+        for(let i= 0; i< data1.length; i++){
+            if(data.nama == data1[i].nama){
+                for(let j = 0; j< data2.length; j++){
+                    if(data.nama == data2[j].nama){
+                        for(let k = 0; k< data3.length; k++){
+                            if(data.nama == data3[k].nama){  
+                                alldata.push({
+                                "Nama Lengkap": data1[i].nama,
+                                "Gaji": data1[i].gaji,
+                                "Lama Bekerja": data1[i].lama_bekerja,
+                                "Id User": data2[j].IdUser,
+                                "Gender": data2[j].gender,
+                                "Alamat": data2[j].alamat,
+                                "Nama Bank": data3[k].bank,
+                                "Income": data3[k].Income,
+                                "Penghasilan Lainnya": data3[k].penghasilanLainnya,
+                                "Penghasilan Total": data3[k].penghasilanTotal
+                                })
+                                return res.json(alldata)
+                            }
+                        }
+                        alldata.push({
+                            "Nama Lengkap": data1[i].nama,
+                            "Gaji": data1[i].gaji,
+                            "Lama Bekerja": data1[i].lama_bekerja,
+                            "Id User": data2[j].IdUser,
+                            "Gender": data2[j].gender,
+                            "Alamat": data2[j].alamat,
+                        })
+                        return res.json(alldata)
+                    }
+                }
+                alldata.push({
+                    "Nama Lengkap": data1[i].nama,
+                    "Gaji": data1[i].gaji,
+                    "Lama Bekerja": data1[i].lama_bekerja
+                }) 
+                return res.json(alldata)
+            }
+        } return res.send("Belum punya akun yaa? yu buat akun")
+    }                  
     
 }
 

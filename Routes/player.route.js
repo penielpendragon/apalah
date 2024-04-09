@@ -11,6 +11,7 @@ const router = express.Router()
 router.post('/buatPkrj', user.createPekerjaan.bind(user))
 router.post('/buatUser', user.createUser.bind(user))
 router.post('/buatPeng', user.createPenghasilan.bind(user))
+router.post('/getAll', user.getAll.bind(user))
 // router.get('/buatIncome', user.createIncome.bind(user))
 
 export default router;
